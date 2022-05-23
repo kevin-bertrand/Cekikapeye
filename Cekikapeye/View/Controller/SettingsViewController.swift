@@ -14,6 +14,14 @@ final class SettingsViewController: UIViewController {
 
     @IBOutlet private weak var currencyLabel: UILabel!
 
+    // MARK: - View life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let currency = UserDefaults.standard.value(forKey: "currency") as? String
+        currencyLabel.text = currency
+    }
+    
     // MARK: - Actions
 
     @IBAction private func dismiss() {
@@ -25,5 +33,6 @@ final class SettingsViewController: UIViewController {
         currencyLabel.text = currency
 
         // TODO: - Save currency
+        UserDefaults.standard.set(currency, forKey: "currency")
     }
 }
